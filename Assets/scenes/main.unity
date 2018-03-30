@@ -739,6 +739,7 @@ MonoBehaviour:
   lastMove: {x: 0, y: 0}
   attackTime: 0.25
   startPoint: 
+  canMove: 0
 --- !u!212 &484150834
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1086,6 +1087,7 @@ MonoBehaviour:
   walkTime: 2
   waitTime: 3
   walkZone: {fileID: 1278832042}
+  canMove: 0
 --- !u!1 &709496000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,7 +1826,7 @@ Transform:
   m_GameObject: {fileID: 1655669201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.55, y: 2.43, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 667976106}
   m_RootOrder: 0
@@ -1866,6 +1868,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: Howdy there stranger
+  dialogueLines:
+  - Howdy stranger
+  - How are you?
+  - Bruther
 --- !u!1 &1673784238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +1995,11 @@ MonoBehaviour:
   dBox: {fileID: 934379130}
   dText: {fileID: 1227652119}
   dialogueActive: 1
+  dialogueLines:
+  - 
+  - 
+  - 
+  currentLine: 0
 --- !u!1001 &1888124489
 Prefab:
   m_ObjectHideFlags: 0

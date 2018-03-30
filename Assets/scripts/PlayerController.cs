@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour
     private float attackTimeCounter;
 
     public string startPoint;
+    public bool canMove;
     // Use this for initialization
     void Start()
     {
+        canMove = true;
         anim = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
         if (!playerExists)
@@ -60,7 +62,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         playerMoving = false;
-
+        if (!canMove)
+        {
+            myRigidbody.velocity = Vector2.zero;
+            return;
+        }
         if (!attacking)
         {
             if (xIn() > 0.5f || xIn() < -0.5f)

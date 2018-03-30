@@ -5,11 +5,13 @@ using UnityEngine;
 public class DialogueHolder : MonoBehaviour {
 
     public string dialogue;
-    private DialogueManager dMgmt;
+    private DialogueManager dMan;
+
+    public string[] dialogueLines;
 
 	// Use this for initialization
 	void Start () {
-        dMgmt = FindObjectOfType<DialogueManager>();
+        dMan = FindObjectOfType<DialogueManager>();
     }
 	
 	// Update is called once per frame
@@ -23,7 +25,17 @@ public class DialogueHolder : MonoBehaviour {
         {
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                dMgmt.ShowBox(dialogue);
+                if (!dMan.dialogueActive)
+                {
+                    dMan.dialogueLines = dialogueLines;
+                    dMan.currentLine = 0;
+                    dMan.ShowDialogue();
+                }
+            }
+
+            if (transform.parent.GetComponent<VillagerMovement>() != null)
+            {
+                transform.parent.GetComponent<VillagerMovement>().canMove = false;
             }
         }
     }
