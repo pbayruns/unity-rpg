@@ -27,6 +27,7 @@ public class HurtPlayer : MonoBehaviour
         if (other.gameObject.name == "player")
         {
             int damage = damageToGive - playerStats.currentDefense;
+            damage = (damage < 0) ? 0 : damage;
             other.gameObject.GetComponent<PlayerHealthManager>().HurtPlayer(damage);
             var clone = (GameObject)Instantiate(damageNumber, other.transform.position, Quaternion.Euler(Vector3.zero));
             clone.GetComponent<FloatingNumbers>().damageNumber = damage;
