@@ -14,11 +14,14 @@ public class PlayerHealthManager : MonoBehaviour
 
     private SpriteRenderer playerSprite;
 
+    private SFXManager sfxMan;
+
     // Use this for initialization
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;
         playerSprite = GetComponent<SpriteRenderer>();
+        sfxMan = FindObjectOfType<SFXManager>();
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class PlayerHealthManager : MonoBehaviour
         playerCurrentHealth -= damage;
         flashActive = true;
         flashCounter = flashLength;
+        sfxMan.playerHurt.Play();
     }
 
     public void setMaxHealth()
