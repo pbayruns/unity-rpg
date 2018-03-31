@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="left-down" width="3" height="3" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="../../../../../../../xampp/htdocs/phaser3-es6-webpack/assets/tilemaps/base_tileset.tsx"/>
+ <layer name="Base Layer" width="3" height="3">
+  <data encoding="csv">
+579,579,579,
+579,579,579,
+579,579,579
+</data>
+ </layer>
+ <layer name="Tile Layer 1" width="3" height="3">
+  <data encoding="csv">
+1473,1474,1475,
+1530,1531,1532,
+1587,1588,1589
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="3" height="3">
+  <data encoding="csv">
+184,0,0,
+0,0,185,
+184,0,0
+</data>
+ </layer>
+ <layer name="WorldObjects" width="3" height="3">
+  <data encoding="csv">
+0,0,413,
+0,0,0,
+0,0,357
+</data>
+ </layer>
+</map>
