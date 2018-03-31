@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 0}
   moveSpeed: 1
+  boundBox: {fileID: 0}
 --- !u!124 &124328740371159960
 Behaviour:
   m_ObjectHideFlags: 1

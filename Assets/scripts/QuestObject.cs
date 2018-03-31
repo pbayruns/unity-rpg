@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class QuestObject : MonoBehaviour {
 
-    public QuestManager qMan;
+    public QuestManager theQM;
     public int questNumber;
 
     public string startText;
     public string endText;
+
+    public bool isItemQuest;
+    public string targetItem;
+
+    public bool isEnemyQuest;
+    public string targetEnemy;
+    public int enemiesToKill;
+    private int enemyKillCount;
 
     // Use this for initialization
     void Start () {
@@ -17,18 +25,39 @@ public class QuestObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (isItemQuest)
+        {
+            if(theQM.itemCollected == targetItem)
+            {
+                theQM.itemCollected = null;
+                EndQuest();
+            }
+        }
+
+        if (isEnemyQuest)
+        {
+            if(theQM.enemyKilled == targetEnemy)
+            {
+                theQM.enemyKilled = null;
+                enemyKillCount++;
+            }
+            if(enemyKillCount >= enemiesToKill)
+            {
+                EndQuest();
+            }
+        }
 		
 	}
 
     public void StartQuest()
     {
-        qMan.ShowQuestText(startText);
+        theQM.ShowQuestText(startText);
     }
 
     public void EndQuest()
     {
-        qMan.questCompleted[questNumber] = true;
+        theQM.questCompleted[questNumber] = true;
         gameObject.SetActive(false);
-        qMan.ShowQuestText(endText);
+        theQM.ShowQuestText(endText);
     }
 }

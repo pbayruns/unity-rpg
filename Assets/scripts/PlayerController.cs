@@ -7,13 +7,13 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
     private float currentMoveSpeed;
-    public float diagonalMoveModifier;
 
     private Animator anim;
     private Rigidbody2D myRigidbody;
 
     private bool playerMoving;
     public Vector2 lastMove;
+    private Vector2 moveInput;
 
     private static bool playerExists;
 
@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        canMove = true;
         anim = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
         if (!playerExists)
@@ -38,6 +37,9 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        canMove = true;
+        lastMove = new Vector2(0f, -1f);
     }
 
     // Get the rigidbody velocity
@@ -69,30 +71,20 @@ public class PlayerController : MonoBehaviour
         }
         if (!attacking)
         {
-            if (xIn() > 0.5f || xIn() < -0.5f)
-            {
-                //transform.Translate(new Vector3(horiz * moveSpeed * Time.deltaTime, 0f, 0f));
-                myRigidbody.velocity = new Vector2(xIn() * currentMoveSpeed, vel().y);
-                lastMove = new Vector2(xIn(), 0f);
-                playerMoving = true;
-            }
-            if (yIn() > 0.5f || yIn() < -0.5f)
-            {
-                //transform.Translate(new Vector3(0f, vert * moveSpeed * Time.deltaTime, 0f));
-                myRigidbody.velocity = new Vector2(vel().x, yIn() * currentMoveSpeed);
-                lastMove = new Vector2(0f, yIn());
-                playerMoving = true;
-            }
+            float xInput = Input.GetAxisRaw("Horizontal");
+            float yInput = Input.GetAxisRaw("Vertical");
 
-            if (xIn() < 0.5f && xIn() > -0.5f)
+            moveInput = new Vector2(xInput, yInput).normalized;
+            if (moveInput != Vector2.zero)
             {
-                myRigidbody.velocity = new Vector2(0f, vel().y);
+                myRigidbody.velocity = new Vector2(moveInput.x * moveSpeed, moveInput.y * moveSpeed);
+                playerMoving = true;
+                lastMove = moveInput;
             }
-            if (yIn() < 0.5f && yIn() > -0.5f)
+            else
             {
-                myRigidbody.velocity = new Vector2(vel().x, 0f);
+                myRigidbody.velocity = Vector2.zero;
             }
-
         }
 
         if (attackTimeCounter > 0)
@@ -113,14 +105,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsAttacking", true);
         }
 
-        if(Mathf.Abs(xIn()) > 0.5f && Mathf.Abs(yIn()) > 0.5f)
-        {
-            currentMoveSpeed = moveSpeed * diagonalMoveModifier;
-        }
-        else
-        {
-            currentMoveSpeed = moveSpeed;
-        }
         anim.SetFloat("MoveX", xIn());
         anim.SetFloat("MoveY", yIn());
         anim.SetBool("IsMoving", playerMoving);
