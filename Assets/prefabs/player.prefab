@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   lastMove: {x: 0, y: 0}
-  attackTime: 0.25
+  attackTime: 0.1
   startPoint: 
   canMove: 0
 --- !u!212 &212201327511750126

@@ -60,7 +60,10 @@ public class CameraController : MonoBehaviour {
         }
         float clampedX = Mathf.Clamp(transform.position.x, minBounds.x + halfWidth, maxBounds.x - halfWidth);
         float clampedY = Mathf.Clamp(transform.position.y, minBounds.y + halfHeight, maxBounds.y - halfHeight);
-        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        const float ratio = .0625f;
+        float roundedX = (int)(clampedX / ratio) * ratio;
+        float roundedY = (int)(clampedY / ratio) * ratio;
+        transform.position = new Vector3(roundedX, roundedY, transform.position.z);
 	}
 
     public void SetBounds(BoxCollider2D newBounds)

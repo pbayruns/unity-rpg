@@ -13,7 +13,7 @@ public class MusicController : MonoBehaviour {
         if (!mcExists)
         {
             mcExists = true;
-            DontDestroyOnLoad(transform.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

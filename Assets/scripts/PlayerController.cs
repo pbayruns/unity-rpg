@@ -82,7 +82,14 @@ public class PlayerController : MonoBehaviour
             moveInput = new Vector2(xInput, yInput).normalized;
             if (moveInput != Vector2.zero)
             {
-                myRigidbody.velocity = new Vector2(moveInput.x * moveSpeed, moveInput.y * moveSpeed);
+                float sprintModifier = 1f;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    sprintModifier = 5f;
+                }
+                float speedX = moveInput.x * moveSpeed * sprintModifier;
+                float speedY = moveInput.y * moveSpeed * sprintModifier;
+                myRigidbody.velocity = new Vector2(speedX, speedY);
                 playerMoving = true;
                 lastMove = moveInput;
             }

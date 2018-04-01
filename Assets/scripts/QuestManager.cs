@@ -6,7 +6,7 @@ public class QuestManager : MonoBehaviour {
 
     public QuestObject[] quests;
     public bool[] questCompleted;
-
+    public bool[] questActive;
     public DialogueManager dMan;
 
     public string itemCollected;
@@ -15,6 +15,7 @@ public class QuestManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         questCompleted = new bool[quests.Length];
+        questActive = new bool[quests.Length];
 	}
 	
 	// Update is called once per frame
